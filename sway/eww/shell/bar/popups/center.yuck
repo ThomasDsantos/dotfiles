@@ -1,0 +1,96 @@
+(defvar center-popup-reveal false)
+(defvar center-popup-layer 0)
+
+(defvar audio-popup-kind "out")
+
+(defvar audio-icons '{
+"out": {
+"headset": "audio-headset",
+"audio-headset": "audio-headset",
+"audio-headset-bluetooth": "audio-headphones",
+"audio-card-analog-pci": "audio-card",
+"audio-card-analog-usb": "audio-card",
+"audio-headset-analog-usb": "audio-headset",
+"speaker": "audio-speakers",
+"microphone": "audio-input-microphone"
+},
+"in": {
+"headset": "audio-headset",
+"audio-headset": "audio-headset",
+"audio-headset-bluetooth": "audio-headphones",
+"audio-card-analog-pci": "audio-card",
+"audio-headset-analog-usb": "audio-headset",
+"speaker": "audio-input-microphone",
+"microphone": "audio-input-microphone"
+}
+}')
+
+(defvar audio-icon-defaults '{
+"in":"audio-input-microphone",
+"out":"audio-speakers" }')
+
+(defwidget center-popup-audio []
+    (box :space-evenly false
+        (themed-icon 
+            :width 48 :height 48
+            :name {audio-icons[audio-popup-kind][audio[audio-popup-kind].icon]?: audio-icon-defaults[audio-popup-kind]})
+        (box :orientation "v" :hexpand true :space-evenly false :style "margin-left: 2rem;"
+            (box :halign "start" :hexpand true :space-evenly false (label :class "text" 
+                :style "font-size: 1.2rem; font-weight: bold;"
+                :text "Audio ${audio-popup-kind == "out" ? "Output" : "Input"}: ${audio[audio-popup-kind].vol}%"))
+            (box :halign "start" :hexpand true :space-evenly false (label :class "text"
+                :text "${audio[audio-popup-kind].name}${audio[audio-popup-kind].mute ? " - muted" : ""}" :limit-width 24))
+            (box :space-evenly false (scale 
+                :class "popup-slider ${audio[audio-popup-kind].mute ? "muted" : ""}"
+                :value {audio[audio-popup-kind].vol})))))
+
+(defpoll brightness :interval "2000h" "~/.config/sway/scripts/brightness.sh get")
+(defwidget center-popup-brightness []
+    (box :space-evenly false
+        (themed-icon 
+            :width 48 :height 48
+            :name "display-brightness-${brightness > 70 ? "high" : (brightness > 30 ? "medium" : (brightness != 0 ? "low" : "off"))}-symbolic")
+        (box :orientation "v" :hexpand true :space-evenly false :style "margin-left: 2rem;"
+            (box :halign "start" :hexpand true :space-evenly false (label :class "text"
+                :style "font-size: 1.2rem; font-weight: bold;"
+                :text "Display Brightness: ${round(brightness, 0)}%"))
+            (box :halign "start" :hexpand true :space-evenly false (label :class "text"
+                :text "Changes might take some time" :limit-width 24))
+            (box :space-evenly false (scale
+                :class "popup-slider" 
+                :value brightness)))))
+
+(defvar session-lock-time 0)
+(defvar session-lock-seconds 20)
+(defwidget center-popup-session-lock []
+    (box :space-evenly false
+        (themed-icon 
+            :width 48 :height 48
+            :name "lock-screen")
+        (box :orientation "v" :hexpand true :space-evenly false :style "margin-left: 2rem;"
+            (box :halign "start" :hexpand true :space-evenly false (label :class "text"
+                :style "font-size: 1.2rem; font-weight: bold;"
+                :text "Locking in: ${session-lock-time - EWW_TIME} seconds"))
+            (box :halign "start" :hexpand true :space-evenly false (label :class "text"
+                :text "Screen will be locked" :limit-width 24))
+            (box :space-evenly false (scale
+                :class "popup-slider" 
+                :value {session-lock-time - EWW_TIME} :max {session-lock-seconds} )))))
+
+
+(defwidget center-popup-content [] (revealer :reveal center-popup-reveal :transition "slidedown" (box (box :class "center-popup-box" :space-evenly false
+    (stack :selected center-popup-layer
+        (center-popup-audio)
+        (center-popup-brightness)
+        (center-popup-session-lock))))))
+
+(defwindow center-popup 
+    :monitor 0
+    :geometry (geometry
+        :x 0
+        :width "8%"
+        :y -50
+        :anchor "top center")
+    :stacking "overlay"
+    :exclusive false
+    (center-popup-content))

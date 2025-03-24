@@ -1,0 +1,25 @@
+# ========================
+# This file is managed by ansible, don't make changes here - they will be overwritten.
+# ========================
+
+bindsym {
+     $mod+b splith
+     $mod+v splitv
+
+     $mod+s layout stacking
+     $mod+w layout tabbed
+     $mod+e layout toggle split
+
+     $mod+f fullscreen
+
+     $mod+Shift+space floating toggle
+
+     $mod+space focus mode_toggle
+
+     $mod+a focus parent
+
+     $mod+Shift+minus move scratchpad
+     $mod+minus scratchpad show
+
+     $mod+Shift+n exec swaync-client -t -sw
+}

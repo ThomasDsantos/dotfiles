@@ -1,0 +1,21 @@
+; My desktop shell
+
+;(defwidget hsep [height]
+;    (box :class "hsep" :style "margin-top: ${height / 2}; margin-bottom: ${height / 2}"))
+
+(include "./bar/bar.yuck")
+
+(defwindow bar [screen]
+    :windowtype "dock"
+    :geometry (geometry 
+        :x "0px"
+        :y "0px"
+        :width "100%"
+        :height "10px"
+        :anchor "top center")
+    :exclusive true
+    :namespace "eww-bar"
+    :hexpand false
+    :vexpand false
+    (top-bar 
+      :screen screen))

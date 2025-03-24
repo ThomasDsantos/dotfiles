@@ -1,0 +1,38 @@
+;(include "./bar/popups/center.yuck")
+
+;(include "./bar/popups/qmenu/menu.yuck")
+(include "./bar/workspace.yuck")
+;(include "./bar/status.yuck")
+;(include "./bar/mpris.yuck")
+(include "./bar/modes.yuck")
+(include "./bar/notifications.yuck")
+(include "./bar/clock.yuck")
+
+;(defvar systray-expanded false)
+;(defwidget systray-expander []
+;    (box :space-evenly false 
+;        (button :class "button"
+;            :timeout "16s"
+;            :onclick "${EWW_CMD} update systray-expanded=${!systray-expanded}"
+;            {systray-expanded ? "" : ""})
+;        (revealer :reveal {systray-expanded} :transition "slideleft"
+;            (systray :class "tray-box"))))
+
+(defwidget right-box []
+    (box :space-evenly false :halign "end"
+;        (systray-expander)
+;        (mpris-current)
+;        (status)
+        (clock)))
+
+(defwidget top-bar [screen]
+    (centerbox :class "top-bar"
+    (box :space-evenly false
+        (mode-symbol)
+        (mode-hints))
+    (box :space-evenly false
+        (workspace-list :screen screen)
+        (notifications))
+    (box
+      (right-box))))
+

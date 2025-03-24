@@ -1,0 +1,85 @@
+(include "icon.yuck")
+
+(defpoll bt-devices :run-while bt-revealed :interval "8s" "./bin/bluetooth.sh poll")
+(defpoll bt-meta  :run-while bt-revealed :interval "8s" "./bin/bluetooth.sh poll-meta")
+(deflisten rfkill "./bin/rfkill.sh")
+
+(defvar bt-icons '{
+    "audio-headset":"audio-headphones",
+    "phone":"phone",
+    "audio-card":"audio-speakers",
+    "computer":"computer",
+    "input-gaming":"input-gaming",
+    "input-keyboard":"input-keyboard",
+    "input-mouse":input-mouse",
+    "fallback":"bluetooth"
+}')
+
+(defwidget _bt-toggle-button [num-connected]
+    (box :class "dual-cbutton${bt-meta.powered ? " active" : ""}" :space-evenly false
+        (button :hexpand true 
+            :onclick {rfkill.bluetooth ? "rfkill unblock bluetooth; sleep 1; ${EWW_CMD} poll bt-meta bt-devices" 
+                : "bluetoothctl power ${bt-meta.powered ? "off" : "on"};  ${EWW_CMD} poll bt-meta bt-devices"}
+            :onrightclick "${EWW_CMD} update bt-revealed=${!bt-revealed}" 
+            :onmiddleclick "rfkill block bluetooth; ${EWW_CMD} poll bt-meta bt-device"
+            :timeout "16s"
+            (label :limit-width 12
+                :text "${(bt-meta.powered && !rfkill.bluetooth) ? "󰂯" : "󰂲"}   ${bt-meta.powered ? (num-connected == 1 ? bt-devices[0].alias
+                : (num-connected == 0 ? "Bluetooth" : "${bt-devices?.[0]?.alias?:""}..."))
+                : "Bluetooth"}"))
+        (button 
+            :onclick "${EWW_CMD} update bt-revealed=${!bt-revealed}" 
+            {bt-revealed ? "" : "" })))
+
+(defwidget bt-toggle-button [] 
+    (_bt-toggle-button :num-connected {jq(bt-devices, "map(select(.connected))|length")}))
+
+(defwidget bluetooth-device-list [] (box :orientation "v" :hexpand true :space-evenly false
+    (for dev in bt-devices 
+        (box :orientation "vertical" :space-evenly false :class "card"
+            (box :space-evenly false
+                (box :hexpand true :halign "start"
+                    (themed-icon :name {dev.icon?:"bluetooth"} :width 48 :height 48)
+                    (battery-circle :percentage {dev.battery} :charging false))
+                (box :orientation "vertical" :style "margin-right: 1rem;"
+                    (label :tooltip {dev.name} :class "title" :text "${dev.alias}" :limit-width 16)
+                    (label :class "text" :text "${dev.mac}")))
+
+            (box :space-evenly false :hexpand true
+                (box :hexpand true :space-evenly false (button :class "button ${dev.connected ? "active" : ""}"
+                    :onclick "bluetoothctl ${dev.connected ? "disconnect" : "connect"} ${dev.mac}&& ${EWW_CMD} poll bt-devices"
+                    :timeout "128s"
+                    {dev.connected ? "󰂯    Connected" : "󰂲   Connect" }))
+                (button :tooltip "Trust" :class "button ${dev.trusted ? "active" : ""}"
+                    :onclick "bluetoothctl ${dev.trusted ? "un" : ""}trust ${dev.mac}; ${EWW_CMD} poll bt-devices"
+                    :timeout "16s"
+                    "󰒘")
+                (button :tooltip "Pair" :class "button ${dev.paired ? "active" : ""}"
+                    :onclick "bluetoothctl ${dev.paired ? "remove" : "pair"} ${dev.mac}; ${EWW_CMD} poll bt-devices"
+                    :timeout "16s"
+                    "󰌹")
+                (button :tooltip "Forget" :class "button alert" 
+                    :onclick "bluetoothctl remove ${dev.mac}; ${EWW_CMD} poll bt-devices"
+                    :timeout "16s"
+                    "󰩹")))))
+)
+
+
+(defwidget bluetooth-panel []
+    (box :space-evenly false :class "section" :orientation "vertical"
+        (box :space-evenly false
+            (button :tooltip "Visible"  :class "sbutton ${bt-meta.visible ? "active" : ""}"
+                :onclick "bluetoothctl discoverable ${bt-meta.visible ? "off" : "on"}; ${EWW_CMD} poll bt-meta bt-devices"
+                :timeout "16s"
+                "󰈈   Visible")
+            (button :tooltip "Pairable" :class "sbutton ${bt-meta.pairable ? "active" : ""}" 
+                :onclick "bluetoothctl pairable ${bt-meta.pairable ? "off" : "on"}; ${EWW_CMD} poll bt-meta bt-devices"
+                :timeout "16s"
+                "󰌹   Pairable")
+            (button :tooltip "Scanning" :class "sbutton ${bt-meta.scanning ? "active" : ""}"
+                :onclick "bluetoothctl scan ${bt-meta.scanning ? "off" : "on"}; ${EWW_CMD} poll bt-meta bt-devices"
+                :timeout "16s"
+                "󰐷   Scanning"))
+        ; comfortably fits 3 devices without scrolling
+        (scroll :style "min-height: 26rem;" :vscroll true :hexpand true
+            (bluetooth-device-list))))

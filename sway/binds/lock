@@ -1,0 +1,19 @@
+# ========================
+# This file is managed by ansible, don't make changes here - they will be overwritten.
+# ========================
+
+mode "exit: [q]lock [l]ogout, [r]eboot, [s]hutdown" {
+  bindsym l exec swaymsg exit
+
+  bindsym r exec systemctl reboot
+
+  bindsym s exec systemctl shutdown
+
+  bindsym q exec swaylock, mode "default"
+
+  bindsym Escape mode "default"
+
+  bindsym Return mode "default"
+}
+
+bindsym $mod+x mode "exit: [q]lock [l]ogout, [r]eboot, [s]hutdown"

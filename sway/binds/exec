@@ -1,0 +1,13 @@
+# ========================
+# This file is managed by ansible, don't make changes here - they will be overwritten.
+# ========================
+
+bindsym {
+  $mod+Return   exec $term
+  $mod+Shift+q  kill
+  $mod+d        exec killall wofi || wofi --show run
+  $mod+Shift+r  reload
+  $mod+Shift+e  exec nautilus -w
+  $mod+p        exec cliphist list | wofi -S dmenu | cliphist decode | wl-copy
+}
+

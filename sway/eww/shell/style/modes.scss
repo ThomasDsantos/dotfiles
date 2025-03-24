@@ -1,0 +1,50 @@
+.mode {
+    @extend .button;
+    padding: 0.07rem 0.85rem 0.07rem 0.85rem;
+}
+
+.mode-default { @extend .mode; }
+
+.mode-media {
+    @extend .mode;
+    background-color: $purple;
+    &:hover { background-color: fade($purple); }
+}
+
+.mode-normal {
+    @extend .mode;
+    color: $inv;
+    background-color: $accent;
+    &:hover { background-color: fade($green); }
+}
+
+.mode-screenshot {
+    @extend .mode;
+    background-color: $lblue;
+    color: $inv;
+    &:hover { background-color: fade($lblue); }
+}
+
+.mode-config {
+    @extend .mode;
+    color: $inv;
+    background-color: $yellow;
+    &:hover { background-color: fade($yellow); }
+}
+
+.mode-keys {
+    color: $lblue;
+    /* font-style: italic; */
+    margin-right: .6rem;
+}
+
+.mode-action {
+    @extend .text;
+}
+
+.mode-box {
+    background-color: $bg1;
+    padding: 0.07rem 1.15rem 0.07rem 0.85rem;
+    margin: 0.4rem;
+    border-radius: 12px;
+}

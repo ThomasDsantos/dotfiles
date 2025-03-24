@@ -1,0 +1,45 @@
+(defvar mode-names '{
+"default": "default",
+"resize": "resize",
+"media": "media",
+"screenshot": "print",
+"config":"config"
+}')
+
+(defvar mode-descs '{
+"default": [ ],
+"screenshot": [
+    {"keys": "s", "action": "Screen" },
+    {"keys": "v", "action": "Visual" },
+    {"keys": "w", "action": "Window" },
+    {"keys": "<C-*", "action": "To Disk" },
+    {"keys": "<S-s>", "action": "Record Screen"},
+    {"keys": "<S-v>", "action": "Record Visual"},
+    {"keys": "c", "action": "Color"},
+    {"keys": "q", "action": "QR-Code"},
+    {"keys": "t", "action": "Text"}
+],
+"resize": [
+    {"keys": "hjkl", "action":"Resize"}
+],
+: [q]lock [l]ogout, [r]eboot, [s]hutdown
+}')
+; DO THE MODES
+
+(deflisten mode
+    :initial '{"change": "default"}'
+    'swaymsg -t subscribe \'["mode"]\' -m')
+
+(defwidget mode-hints []
+    (box :space-evenly false 
+        (for desc in {mode-descs[mode.change]}
+            (box :space-evenly false :class "mode-box"
+            (label :text "${desc.keys}" :class "mode-keys")
+            (label :text "${desc.action}" :class "mode-action")))))
+
+(defwidget mode-symbol []
+    (box :space-evenly false
+        (label 
+            :class "mode-${mode.change}"
+            :text "${mode-names[mode.change]}")))
+

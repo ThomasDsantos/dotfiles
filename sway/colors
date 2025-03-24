@@ -1,0 +1,7 @@
+exec_always {
+    gsettings set $gnome-schema gtk-theme 'Your theme'
+    gsettings set $gnome-schema icon-theme 'Your icon theme'
+    gsettings set $gnome-schema cursor-theme 'Your cursor Theme'
+    gsettings set $gnome-schema font-name 'Your font name'
+}
+

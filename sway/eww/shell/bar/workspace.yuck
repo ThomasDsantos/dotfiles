@@ -1,0 +1,22 @@
+(deflisten sway :initial "{}" "exec ./bin/sway.py")
+
+(include "./bar/popups/workspace.yuck")
+
+(defwidget workspace-button [screen ws]
+    (button :visible {!ws.is_virtual && ws.screen_name == screen}
+        :class "button ${ws.focused ? "active" : ""}"
+        :onclick "swaymsg -q workspace ${ws.ws}"
+        "${ws.ws}"))
+
+(defwidget workspace-scratch []
+    (revealer :reveal {sway.scratch_count >= 0} :visible {sway.scratch_count > 0} :transition "slideright"
+        (button :style "min-width: 1.3rem;" :class "button ${sway.scratch_count > 0 ? "stack" : ""}" "~${sway.scratch_count}")))
+
+(defwidget workspace-list [screen]
+    (eventbox 
+        :onhover "./bin/popup.sh ws-overview-win ws-overview-reveal open ${sway.screen_name_focused}&" 
+        (box :space-evenly false 
+            (workspace-scratch)
+            (box :space-evenly false 
+                (for ws in {sway.workspaces}
+                    (workspace-button :screen screen :ws ws))))))

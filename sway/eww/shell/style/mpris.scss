@@ -1,0 +1,7 @@
+.mpris-playing {
+    background: linear-gradient(to left, $lblue, $pink);
+    color: $inv;
+    &:hover {
+        background: linear-gradient(to left, fade($lblue), fade($pink));
+    }
+}
