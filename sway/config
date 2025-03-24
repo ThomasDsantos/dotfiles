@@ -42,7 +42,7 @@ exec wl-paste --type image --watch cliphist store
 exec kanshi
 exec eww-setup
 
-exec /home/thdo/.local/bin/wallpaper
+exec $HOME/.local/bin/wallpaper
 
 input type:keyboard {
     xkb_layout us(alt-intl)
