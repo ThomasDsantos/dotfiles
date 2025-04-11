@@ -1,4 +1,3 @@
-(deflisten audio "./bin/volume.sh")
 
 (defvar audio-out-revealed false)
 (defpoll audio-sinks :interval "16s" :run-while audio-out-revealed "./bin/audio_list.sh sinks")

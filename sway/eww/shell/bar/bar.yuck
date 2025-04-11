@@ -1,29 +1,30 @@
-;(include "./bar/popups/center.yuck")
+(include "./bar/popups/center.yuck")
 
-;(include "./bar/popups/qmenu/menu.yuck")
+(include "./bar/popups/qmenu/menu.yuck")
 (include "./bar/workspace.yuck")
-;(include "./bar/status.yuck")
-;(include "./bar/mpris.yuck")
+(include "./bar/status.yuck")
+(include "./bar/mpris.yuck")
 (include "./bar/modes.yuck")
 (include "./bar/notifications.yuck")
 (include "./bar/clock.yuck")
 
-;(defvar systray-expanded false)
-;(defwidget systray-expander []
-;    (box :space-evenly false 
-;        (button :class "button"
-;            :timeout "16s"
-;            :onclick "${EWW_CMD} update systray-expanded=${!systray-expanded}"
-;            {systray-expanded ? "" : ""})
-;        (revealer :reveal {systray-expanded} :transition "slideleft"
-;            (systray :class "tray-box"))))
+(defvar systray-expanded false)
+(defwidget systray-expander []
+    (box :space-evenly false 
+        (button :class "button"
+            :timeout "16s"
+            :onclick "${EWW_CMD} update systray-expanded=${!systray-expanded}"
+            {systray-expanded ? "" : ""})
+        (revealer :reveal {systray-expanded} :transition "slideleft"
+            (systray :class "tray-box"))))
 
-(defwidget right-box []
+(defwidget right-box [screen]
     (box :space-evenly false :halign "end"
-;        (systray-expander)
-;        (mpris-current)
-;        (status)
-        (clock)))
+        (systray-expander)
+        (mpris-current)
+        (status)
+        (clock
+          :screen screen)))
 
 (defwidget top-bar [screen]
     (centerbox :class "top-bar"
@@ -34,5 +35,5 @@
         (workspace-list :screen screen)
         (notifications))
     (box
-      (right-box))))
+      (right-box :screen screen))))
 

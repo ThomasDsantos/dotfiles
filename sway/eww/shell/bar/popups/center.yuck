@@ -44,22 +44,6 @@
                 :class "popup-slider ${audio[audio-popup-kind].mute ? "muted" : ""}"
                 :value {audio[audio-popup-kind].vol})))))
 
-(defpoll brightness :interval "2000h" "~/.config/sway/scripts/brightness.sh get")
-(defwidget center-popup-brightness []
-    (box :space-evenly false
-        (themed-icon 
-            :width 48 :height 48
-            :name "display-brightness-${brightness > 70 ? "high" : (brightness > 30 ? "medium" : (brightness != 0 ? "low" : "off"))}-symbolic")
-        (box :orientation "v" :hexpand true :space-evenly false :style "margin-left: 2rem;"
-            (box :halign "start" :hexpand true :space-evenly false (label :class "text"
-                :style "font-size: 1.2rem; font-weight: bold;"
-                :text "Display Brightness: ${round(brightness, 0)}%"))
-            (box :halign "start" :hexpand true :space-evenly false (label :class "text"
-                :text "Changes might take some time" :limit-width 24))
-            (box :space-evenly false (scale
-                :class "popup-slider" 
-                :value brightness)))))
-
 (defvar session-lock-time 0)
 (defvar session-lock-seconds 20)
 (defwidget center-popup-session-lock []
@@ -81,7 +65,6 @@
 (defwidget center-popup-content [] (revealer :reveal center-popup-reveal :transition "slidedown" (box (box :class "center-popup-box" :space-evenly false
     (stack :selected center-popup-layer
         (center-popup-audio)
-        (center-popup-brightness)
         (center-popup-session-lock))))))
 
 (defwindow center-popup 

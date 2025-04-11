@@ -1,10 +1,9 @@
 ; My desktop shell
+(defwidget hsep [height]
+    (box :class "hsep" :style "margin-top: ${height / 2}; margin-bottom: ${height / 2}"))
 
-;(defwidget hsep [height]
-;    (box :class "hsep" :style "margin-top: ${height / 2}; margin-bottom: ${height / 2}"))
-
+(include "icon.yuck")
 (include "./bar/bar.yuck")
-
 (defwindow bar [screen]
     :windowtype "dock"
     :geometry (geometry 

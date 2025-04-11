@@ -1,6 +1,6 @@
 #!/bin/sh
 
-pactl --format=json list "$1" | jq -c 'map({
+pactl --format=json list "$1" | jq -c '[.[] | select(.description | contains("HDMI") | not)]' | jq -c 'map({
     index,
     id: .name,
     name: .description,

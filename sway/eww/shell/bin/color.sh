@@ -34,7 +34,6 @@ relink_file "$HOME/.config/sway" $target color &
 ) &
 recompile_scss "$HOME/.config/swaync"
 recompile_scss "$HOME/.config/wofi"
-recompile_scss "$HOME/.config/gtklock/"
 
 wait
 sleep 0.1

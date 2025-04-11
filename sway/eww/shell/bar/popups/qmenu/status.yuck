@@ -107,12 +107,9 @@
     (box :orientation "v" :class "section"
         (scroll :vscroll true :style "min-width: 4rem;"
             (box :orientation "v"
-                (power-button :icon "󰤄" :color "blue" :img "system-suspend"
-                    :desc "Suspend System"
-                    :cmd "cd; gtklock -d; systemctl suspend")
                 (power-button :icon "󰌾" :color "green" :img "lock"
                     :desc "Lock Session"
-                    :cmd "cd; gtklock -d")
+                    :cmd "cd; swaylock")
                 (power-button :icon "󰿅" :color "yellow" :img "system-log-out"
                     :desc "Exit Session"
                     :cmd "swaymsg exit")

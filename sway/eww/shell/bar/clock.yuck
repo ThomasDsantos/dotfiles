@@ -1,30 +1,7 @@
-(defvar weather-text-icons '{
-"01d": "󰖙",
-"01n": "",
-"02d": "",
-"02n": "",
-"03d": "",
-"03n": "",
-"04d": "",
-"04n": "",
-"09d": "",
-"09n": "",
-"10d": "",
-"10n": "",
-"11d": "",
-"11n": "",
-"13d": "",
-"13n": "",
-"50d": "",
-"50n": ""
-}')
-
-(defpoll weather :interval "30m" "bin/weather.sh")
-
-(defwidget clock []
+(defwidget clock [screen]
     (box :space-evenly false
         (button 
-            :onclick "bin/popup.sh settings-panel settings-panel-shown open"
+            :onclick "bin/popup.sh settings-panel settings-panel-shown open ${screen}"
             :timeout "16s"
             :class "button"
             "${weather-text-icons[(weather?.weather?.[0]?.icon ?: "01d")]}    ${formattime(EWW_TIME, "%m/%d - %H:%M")}")))

@@ -1,4 +1,9 @@
-My dotfiles
+# My dotfiles
 
-Using stow to copy
+Using GNU stow to copy in `$HOME/.config`
+
+`stow .`
+
 Ansible deployed
+
+Neovim config submodule

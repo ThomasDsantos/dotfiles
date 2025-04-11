@@ -15,6 +15,7 @@ bindsym {
      $mod+Shift+space floating toggle
 
      $mod+space focus mode_toggle
+     $mod+Shift+s [con_id="__focused__"] sticky toggle
 
      $mod+a focus parent
 

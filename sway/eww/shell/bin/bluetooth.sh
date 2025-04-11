@@ -40,7 +40,7 @@ function list_devices {
             "$buffer" "$mac" "$name" "$alias" "$icon" $connected $paired $trusted $blocked $battery
     done < <(bluetoothctl devices)
     echo "$buffer]"
-}| jq 'sort_by(.connected | not)'
+} | jq 'sort_by(.connected | not)'
 }
 
 function get_meta {

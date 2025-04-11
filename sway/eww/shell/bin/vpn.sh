@@ -1,11 +1,9 @@
 #!/usr/bin/env bash
 
-EWW="$HOME/.config/sway/eww/shell"
-
 function get_active {
     nmcli -g TYPE,ACTIVE,UUID,NAME connection show \
         |awk -F":" '
-            $1 == "wireguard" && $2 == "yes" {
+            $1 == "tun" && $2 == "yes" {
                 printf "{\"active\": true, \"name\":\"%s\", \"uuid\":\"%s\"}\n",$4,$3;
                 fflush();
                 exit 1;
@@ -15,7 +13,7 @@ function get_active {
 function list_vpns {
     nmcli -g TYPE,ACTIVE,UUID,NAME connection show \
         |while IFS=":" read -r type active uuid name; do
-            if [[ "$type" != "wireguard" ]]; then
+            if [[ "$type" != "wireguard" ]] && [[ "$type" != "tun" ]]; then
                 continue
             fi
 
@@ -27,7 +25,7 @@ function list_vpns {
 
             printf '{"active":%s,"name":"%s","uuid":"%s"}\n' \
                 "$bactive" "$name" "$uuid"
-            done|jq -s 'sort_by(.name)'
+            done| jq -s 'sort_by(.name)'
 }
 
 case "$1" in

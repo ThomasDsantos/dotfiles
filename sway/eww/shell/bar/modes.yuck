@@ -1,9 +1,9 @@
 (defvar mode-names '{
-"default": "default",
-"resize": "resize",
-"media": "media",
-"screenshot": "print",
-"config":"config"
+  "default": "default",
+  "resize": "resize",
+  "session-manager":"Session",
+  "media": "media",
+  "screenshot": "print"
 }')
 
 (defvar mode-descs '{
@@ -22,9 +22,14 @@
 "resize": [
     {"keys": "hjkl", "action":"Resize"}
 ],
-: [q]lock [l]ogout, [r]eboot, [s]hutdown
+"session-manager": [
+  {"keys": "q", "action": "Lock session"},
+  {"keys": "l", "action": "Logout"},
+  {"keys": "r", "action": "Restart"},
+  {"keys": "s", "action": "Shutdown"}
+]
 }')
-; DO THE MODES
+
 
 (deflisten mode
     :initial '{"change": "default"}'

@@ -1,9 +1,7 @@
 (deflisten perf-net "./bin/netspeed.py")
-(deflisten perf-gpu "./bin/gpu.sh")
 (defpoll perf-pcount :run-while perf-revealed :interval "4s" "pgrep --count .")
 
-(defvar gpu-sensor "AMDGPU_JUNCTION")
-(defvar cpu-sensor "ASUSEC_CPU")
+(defvar cpu-sensor "THINKPAD_CPU")
 
 (defvar mem-kb 1024)
 (defvar mem-mb 1048576)
@@ -42,16 +40,6 @@
                 :value {EWW_RAM.used_mem_perc}
                 :left "mem: ${round(EWW_RAM.used_mem_perc, 1)}%"
                 :right "${round(EWW_RAM.used_mem / mem-gb, 1)}GB / ${round(EWW_RAM.total_mem / mem-gb, 1)}GB")
-            (colored-scale
-                :temp {EWW_TEMPS[gpu-sensor]} 
-                :value {perf-gpu?.usage?:0}
-                :left "gpu: ${perf-gpu?.usage?:"?"}%"
-                :right "${EWW_TEMPS[gpu-sensor]}°C")
-            (colored-scale 
-                :class "mem" 
-                :value {(perf-gpu.mem_used / perf-gpu.mem_total) * 100}
-                :left "vmem: ${round((perf-gpu.mem_used / perf-gpu.mem_total) * 100, 1)}%"
-                :right "${round(perf-gpu.mem_used / mem-gb, 1)}GB / ${round(perf-gpu.mem_total / mem-gb, 1)}GB")
             (colored-scale 
                 :class "net-up"
                 :value {perf-net.sent_rel}

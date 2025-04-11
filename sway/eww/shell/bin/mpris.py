@@ -1,4 +1,5 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
+
 import json
 import sys
 from urllib.parse import urlparse, unquote
@@ -29,8 +30,7 @@ def get_icon(icon_name, size=48, fallback="multimedia-video-player"):
 def get_art(player):
     try:
         art_url = player.props.metadata["mpris:artUrl"]
-        if art_url.startswith("file://"):
-            art_path = unquote(urlparse(art_url).path)
+        art_path = unquote(urlparse(art_url).path)
     except KeyError:
         art_path = None
 

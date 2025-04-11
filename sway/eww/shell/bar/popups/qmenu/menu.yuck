@@ -5,7 +5,6 @@
 (include "./bar/popups/qmenu/status.yuck")
 (include "./bar/popups/qmenu/audio.yuck")
 (include "./bar/popups/qmenu/performance.yuck")
-(include "./bar/popups/qmenu/valent.yuck")
 
 (defvar settings-panel-shown false)
 ;; (defvar settings-section 0)
@@ -13,7 +12,6 @@
 (defvar wifi-revealed false)
 (defvar perf-revealed false)
 (defvar vpn-revealed false)
-(defvar valent-revealed false)
 
 (defwidget battery-circle [percentage charging]
     (circular-progress :visible {(percentage) > 0} :thickness 6 :value {percentage}
@@ -41,13 +39,10 @@
                 (revealer :reveal {bt-revealed} :transition "slidedown" (bluetooth-panel))
                 (revealer :reveal {wifi-revealed} :transition "slidedown" (wifi-panel))
                 (box
-                    (vpn-toggle-button)
-                    (valent-toggle-button))
-                (revealer :reveal {valent-revealed} :transition "slidedown" (valent-panel))
+                    (vpn-toggle-button))
                 (revealer :reveal {vpn-revealed} :transition "slidedown" (vpn-panel))))))))
 
 (defwindow settings-panel 
-    :monitor '["DP-1", "eDP-1", 0]'
     :geometry (geometry 
         :x -20
         :y -20
@@ -56,11 +51,10 @@
         :anchor "top right")
     :stacking "overlay"
     :exclusive true
-    :focusable "ondemand"
+    :focusable true
     (qmenu))
 
 (defwindow qmenu-edge
-    :monitor '["DP-1", "eDP-1", 0]'
     :geometry (geometry 
         :x 0
         :y 0

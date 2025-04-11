@@ -11,22 +11,12 @@
 }')
 
 (defwidget toggle-panel [] 
-    (box :space-evenly false :orientation "vertical"
-        (box
-            (button :class "cbutton ${look-nightlight ? "active" : ""}"
-                :onclick "killall gammastep && ${EWW_CMD} update look-nightlight=false || { ${EWW_CMD} update look-nightlight=true; gammastep -O ${nightlight-strengh}& }"
-                "${look-nightlight ? "󰖔" : ""}   Nightlight")
-            (button :class "cbutton"
-                :onclick "./bin/color.sh"
-                :timeout "128s"
-                "${look-theme == "light" ? "" : "󰖔"}   Colorscheme"))
-        
+    (box :space-evenly false :orientation "h"
         (box
             (button :class "cbutton ${service-swayidle ? "active" : ""}"
                 :onclick "killall swayidle && ${EWW_CMD} update service-swayidle=false || { ${EWW_CMD} update service-swayidle=true; swayidle -w& }"
                 "${service-swayidle ? "󰒲" : "󰒳"}   Swayidle")
-
-            
+        
             (box :class "dual-cbutton${cpu-governor == "performance" ? " active" : ""}" :space-evenly false
                 (button :hexpand true
                     :onclick "./bin/cpu_governor.sh ${cpu-governor == "performance" ? "powersave" : "performance"}; ${EWW_CMD} update cpu-governor=$(< /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor)"

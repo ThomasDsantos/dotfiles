@@ -1,8 +1,4 @@
-# ========================
-# This file is managed by ansible, don't make changes here - they will be overwritten.
-# ========================
-
-mode "exit: [q]lock [l]ogout, [r]eboot, [s]hutdown" {
+mode "session-manager" {
   bindsym l exec swaymsg exit
 
   bindsym r exec systemctl reboot
@@ -16,4 +12,4 @@ mode "exit: [q]lock [l]ogout, [r]eboot, [s]hutdown" {
   bindsym Return mode "default"
 }
 
-bindsym $mod+x mode "exit: [q]lock [l]ogout, [r]eboot, [s]hutdown"
+bindsym $mod+x mode "session-manager"
