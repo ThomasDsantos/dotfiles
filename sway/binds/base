@@ -1,26 +1,23 @@
-# ========================
-# This file is managed by ansible, don't make changes here - they will be overwritten.
-# ========================
-
 bindsym {
-     $mod+b splith
-     $mod+v splitv
+    $mod+b splith
+    $mod+v splitv
 
-     $mod+s layout stacking
-     $mod+w layout tabbed
-     $mod+e layout toggle split
+    $mod+s layout stacking
+    $mod+w layout tabbed
+    $mod+e layout toggle split
 
-     $mod+f fullscreen
+    $mod+f fullscreen
 
-     $mod+Shift+space floating toggle
+    $mod+Shift+space floating toggle
 
-     $mod+space focus mode_toggle
-     $mod+Shift+s [con_id="__focused__"] sticky toggle
+    $mod+space focus mode_toggle
+    $mod+Shift+s [con_id="__focused__"] sticky toggle
 
-     $mod+a focus parent
+    $mod+a focus parent
 
-     $mod+Shift+minus move scratchpad
-     $mod+minus scratchpad show
+    $mod+Shift+minus move scratchpad
+    $mod+minus scratchpad show
 
-     $mod+Shift+n exec swaync-client -t -sw
+    $mod+Shift+n exec swaync-client -t -sw
+    $mod+n exec swaync-client --close-latest
 }

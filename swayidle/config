@@ -1,4 +1,5 @@
-timeout 120 '~/.config/swayidle/notify.sh start 20' resume '~/.config/swayidle/notify.sh stop'
-timeout 140 '~/.config/swayidle/lock.sh'
-timeout 260 '~/.config/swayidle/lock.sh'
+timeout 300 'swaylock -f' \
+  timeout 600 'swaymsg "output * dpms off"' \
+  resume 'swaymsg "output * dpms on"' \
+  before-sleep 'swaylock -f'
 

@@ -13,11 +13,6 @@
     {"keys": "v", "action": "Visual" },
     {"keys": "w", "action": "Window" },
     {"keys": "<C-*", "action": "To Disk" },
-    {"keys": "<S-s>", "action": "Record Screen"},
-    {"keys": "<S-v>", "action": "Record Visual"},
-    {"keys": "c", "action": "Color"},
-    {"keys": "q", "action": "QR-Code"},
-    {"keys": "t", "action": "Text"}
 ],
 "resize": [
     {"keys": "hjkl", "action":"Resize"}

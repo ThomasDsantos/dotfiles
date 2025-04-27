@@ -1,14 +1,9 @@
 mode "session-manager" {
   bindsym l exec swaymsg exit
-
   bindsym r exec systemctl reboot
-
   bindsym s exec systemctl shutdown
-
   bindsym q exec swaylock, mode "default"
-
   bindsym Escape mode "default"
-
   bindsym Return mode "default"
 }
 

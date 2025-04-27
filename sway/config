@@ -12,6 +12,8 @@ set $down j
 set $up k
 set $right l
 
+set $sc ~/.config/sway/scripts
+
 include /etc/sway/config-vars.d/*
 include /etc/sway/config.d/*
 
@@ -38,16 +40,20 @@ include ./binds/*
 
 xwayland enable
 
-exec swaync
-exec nm-applet
-exec gnome-keyring-daemon
-exec wl-paste --type text --watch cliphist store
-exec wl-paste --type image --watch cliphist store
+exec {
+  swaync
+  nm-applet
+  gnome-keyring-daemon
+  wl-paste --type text --watch cliphist store
+  wl-paste --type image --watch cliphist store
+  $HOME/.local/bin/wallpaper set
+  swayidle -w
+}
 
-exec $HOME/.local/bin/wallpaper set
-# exec swayidle -w
-exec_always pkill kanshi; exec kanshi
-exec_always eww-setup
+exec_always {
+  pkill kanshi; exec kanshi
+  eww-setup
+}
 
 input type:keyboard {
     xkb_layout us(alt-intl)
