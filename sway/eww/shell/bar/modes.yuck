@@ -12,7 +12,7 @@
     {"keys": "s", "action": "Screen" },
     {"keys": "v", "action": "Visual" },
     {"keys": "w", "action": "Window" },
-    {"keys": "<C-*", "action": "To Disk" },
+    {"keys": "<C-*", "action": "To Disk" }
 ],
 "resize": [
     {"keys": "hjkl", "action":"Resize"}
@@ -22,6 +22,10 @@
   {"keys": "l", "action": "Logout"},
   {"keys": "r", "action": "Restart"},
   {"keys": "s", "action": "Shutdown"}
+],
+"media": [
+  {"keys": "p", "action": "Previous"},
+  {"keys": "n", "action": "Next"}
 ]
 }')
 

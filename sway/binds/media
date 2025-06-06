@@ -1,0 +1,12 @@
+# vim: ft=swayconfig
+
+mode "media" {
+    bindsym {
+      Escape mode "default"
+      p exec playerctl previous
+      n exec playerctl next
+    }
+}
+
+bindsym $mod+Shift+M mode "media"
+

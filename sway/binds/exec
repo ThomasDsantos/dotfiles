@@ -1,10 +1,11 @@
 bindsym {
-  $mod+Return   exec $term
-  $mod+Shift+q  kill
-  $mod+d        exec killall wofi || wofi --show run
-  $mod+Shift+d  exec killall wofi || wofi --show drun
-  $mod+Shift+r  reload
-  $mod+Shift+e  exec nautilus -w
-  $mod+p        exec cliphist list | wofi -S dmenu | cliphist decode | wl-copy
+  $mod+Return       exec $term
+  $mod+Shift+q      kill
+  $mod+Shift+r      reload
+
+  $mod+p            exec killall wofi || cliphist list | wofi -S dmenu | cliphist decode | wl-copy
+  $mod+d            exec killall wofi || wofi --show run
+  $mod+Shift+d      exec killall wofi || wofi --show drun
+  $mod+Shift+e      exec killall wofi || wofi-emoji
 }
 
