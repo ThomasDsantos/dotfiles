@@ -38,7 +38,7 @@ else
     eww -c "$EWW" update center-popup-reveal=true center-popup-layer="$widget"
 fi
 if ((! is_open)); then
-    eww -c "$EWW" open center-popup $4
+    eww -c "$EWW" open center-popup \"$4\"
 fi
 
 sleep "$duration"

@@ -32,7 +32,7 @@ client.unfocused         #333333  #222222     #888888  #292d2e    #ffffff00
 
 floating_modifier $mod normal
 
-include ./color
+include ./colors
 include ./displays
 include ./rules
 include ./workspaces
@@ -42,7 +42,10 @@ xwayland enable
 
 exec {
   swaync
+
   nm-applet
+  blueman-applet
+
   gnome-keyring-daemon
   wl-paste --type text --watch cliphist store
   wl-paste --type image --watch cliphist store

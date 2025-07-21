@@ -16,6 +16,8 @@ if [ "$value" = true ] || [ "$3" = close ]; then
         eww -c "$EWW" close "$1"
     fi
 else
+    # echo eww -c "$EWW" update "$2"=true
     eww -c "$EWW" update "$2"=true
-    eww -c "$EWW" open "$1" --screen $4
+    # echo eww -c "$EWW" open "$1" --screen "$4"
+    eww -c "$EWW" open "$1" --screen "$4"
 fi

@@ -5,12 +5,13 @@ return {
   enable_tab_bar = false,
 
   font_size = 12.0,
-  font = wezterm.font('JetBrains Mono'),
+  font = wezterm.font_with_fallback {'JetBrains Mono', 'Fira Code'},
 
   window_background_opacity = 0.92,
   window_decorations = 'RESIZE',
 
   keys = {
+    { key = 'r', mods = 'CTRL|SHIFT', action = wezterm.action.ReloadConfiguration },
     { key = '-', mods = 'CTRL', action = wezterm.action.DecreaseFontSize },
     { key = '=', mods = 'CTRL', action = wezterm.action.IncreaseFontSize },
     { key = 'C', mods = 'CTRL', action = wezterm.action.CopyTo 'Clipboard' },

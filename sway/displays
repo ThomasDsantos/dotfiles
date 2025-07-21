@@ -1,4 +1,4 @@
 
 for_window [title="Picture in picture"] \
-    floating enable, resize set 900px 500px, move left 2000 px, sticky enable
+    floating enable, resize set 900px 500px, move left 1px, sticky enable
 

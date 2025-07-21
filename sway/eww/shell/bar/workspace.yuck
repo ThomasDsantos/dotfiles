@@ -5,7 +5,7 @@
 (defwidget workspace-button [screen ws]
     (button :visible {!ws.is_virtual && ws.screen_name == screen}
         :class "button ${ws.focused ? "active" : ""}"
-        :onclick "swaymsg -q workspace ${ws.ws}"
+        :onclick "swaymsg -q workspace \"${ws.ws}\""
         "${ws.ws}"))
 
 (defwidget workspace-scratch []
@@ -14,7 +14,7 @@
 
 (defwidget workspace-list [screen]
     (eventbox 
-        :onhover "./bin/popup.sh ws-overview-win ws-overview-reveal open ${sway.screen_name_focused}&" 
+        :onhover "./bin/popup.sh ws-overview-win ws-overview-reveal open \"${sway.screen_name_focused}\"&" 
         (box :space-evenly false 
             (workspace-scratch)
             (box :space-evenly false 
