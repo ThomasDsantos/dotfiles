@@ -11,13 +11,13 @@ return {
         auto_suggestions = false,
       },
       -- provider = "numberly",
-      auto_suggestions_provider = "numberly_completion",
+      -- auto_suggestions_provider = "numberly_completion",
       provider = "copilot",
-      -- auto_suggestions_provider = "copilot_completion",
+      auto_suggestions_provider = "copilot_completion",
       providers = {
         copilot = {
           endpoint = "https://api.githubcopilot.com",
-          model = "gpt-4.1-2025-04-14",
+          model = "gpt-4.1",
         },
         copilot_completion = {
           __inherited_from = "copilot",
@@ -34,11 +34,6 @@ return {
           api_key_name = "cmd: echo 'coconut'",
           endpoint = "https://code-assistant.numberly.dev/v1",
           model = "Qwen2.5-Coder-32B-Instruct",
-          extra_request_body = {
-            timeout = 30000,
-            temperature = 0.75,
-            max_completion_tokens = 8192,
-          },
         },
       },
     },
