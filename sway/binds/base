@@ -8,13 +8,10 @@ bindsym {
 
     $mod+f fullscreen
 
-    $mod+Shift+space floating toggle
-
-    $mod+space focus mode_toggle
-    $mod+Shift+s [con_id="__focused__"] sticky toggle
-
     $mod+a focus parent
 
+    $mod+space focus mode_toggle
+    $mod+Shift+space floating toggle
     $mod+Shift+minus move scratchpad
     $mod+minus scratchpad show
 

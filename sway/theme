@@ -1,3 +1,5 @@
+
+
 exec_always {
     gsettings set $gnome-schema gtk-theme 'Adwaita'
     gsettings set $gnome-schema icon-theme 'Adwaita'
@@ -5,3 +7,4 @@ exec_always {
     gsettings set $gnome-schema font-name 'Jetbrains Mono'
 }
 
+seat * xcursor_theme Adwaita 24

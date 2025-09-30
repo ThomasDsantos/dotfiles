@@ -11,11 +11,19 @@ return {
   window_decorations = 'RESIZE',
 
   keys = {
+    {
+      mods = 'SUPER',
+      key = '=',
+      action = wezterm.action.DisableDefaultAssignment,
+    },
+
     { key = 'r', mods = 'CTRL|SHIFT', action = wezterm.action.ReloadConfiguration },
+
     { key = '-', mods = 'CTRL', action = wezterm.action.DecreaseFontSize },
     { key = '=', mods = 'CTRL', action = wezterm.action.IncreaseFontSize },
-    { key = 'C', mods = 'CTRL', action = wezterm.action.CopyTo 'Clipboard' },
-    { key = 'V', mods = 'CTRL', action = wezterm.action.PasteFrom 'Clipboard' },
+
+    { key = 'c', mods = 'CTRL|SHIFT', action = wezterm.action.CopyTo 'Clipboard' },
+    { key = 'v', mods = 'CTRL|SHIFT', action = wezterm.action.PasteFrom 'Clipboard' },
     {
       key = '1',
       mods = 'CTRL',

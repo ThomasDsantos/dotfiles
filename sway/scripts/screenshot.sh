@@ -33,7 +33,7 @@ function create_tmp {
 
 function create_save {
     timestamp="$(date +"$DATEFMT")"
-    REPLY="$(xdg-user-dir PICTURES)/Screenshots/${timestamp}.png"
+    REPLY="$(xdg-user-dir PICTURES)/screenshots/${timestamp}.png"
 }
 
 function screen {
