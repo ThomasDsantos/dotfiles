@@ -76,6 +76,14 @@ return {
 
     return {
       keymaps = {
+        ["g?"] = { "actions.show_help", mode = "n" },
+        ["<CR>"] = "actions.select",
+        ["<C-_>"] = { "actions.select", opts = { vertical = true } },
+        ["<C-v>"] = { "actions.select", opts = { horizontal = true } },
+        ["R"] = "actions.refresh",
+        ["-"] = { "actions.parent", mode = "n" },
+        ["."] = { "actions.open_cwd", mode = "n" },
+        ["g."] = { "actions.toggle_hidden", mode = "n" },
         ["gd"] = {
           desc = "Toggle file detail view",
           callback = function()
@@ -95,6 +103,7 @@ return {
           end,
         },
       },
+      use_default_keymaps = false,
       win_options = {
         winbar = "%!v:lua.get_oil_winbar()",
       },
