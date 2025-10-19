@@ -11,40 +11,33 @@ local customizations = {
   { rule = '*semi', severity = 'off', fixable = true },
 }
 
-local lspconfig = require('lspconfig')
--- Enable eslint for all supported languages
-lspconfig.eslint.setup(
-  {
-    filetypes = {
-      "javascript",
-      "javascriptreact",
-      "javascript.jsx",
-      "typescript",
-      "typescriptreact",
-      "typescript.tsx",
-      "vue",
-      "html",
-      "markdown",
-      "json",
-      "jsonc",
-      "yaml",
-      "toml",
-      "xml",
-      "gql",
-      "graphql",
-      "astro",
-      "svelte",
-      "css",
-      "less",
-      "scss",
-      "pcss",
-      "postcss"
-    },
-    settings = {
-      -- Silent the stylistic rules in you IDE, but still auto fix them
-      rulesCustomizations = customizations,
-    },
-  }
-)
-
-return {}
+return {
+  filetypes = {
+    "javascript",
+    "javascriptreact",
+    "javascript.jsx",
+    "typescript",
+    "typescriptreact",
+    "typescript.tsx",
+    "vue",
+    "html",
+    "markdown",
+    "json",
+    "jsonc",
+    "yaml",
+    "toml",
+    "xml",
+    "gql",
+    "graphql",
+    "astro",
+    "svelte",
+    "css",
+    "less",
+    "scss",
+    "pcss",
+    "postcss"
+  },
+  settings = {
+    rulesCustomizations = customizations,
+  },
+}
