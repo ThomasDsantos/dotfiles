@@ -11,18 +11,12 @@ return {
       },
     })
     require('telescope').load_extension("ui-select")
-    local builtin = require('telescope.builtin')
-
-    vim.keymap.set('n', '<leader>fgw', function()
-      local word = vim.fn.expand("<cword>")
-      builtin.grep_string({ search = word })
-    end)
   end,
   lazy = false,
   keys = function()
     return {
-      { "<leader>fg",  "<cmd>Telescope git_files<cr>",       desc = "Find git files" },
-      { "<leader>ff",  "<cmd>Telescope find_files<cr>",      desc = "Find all files" },
+      { "<leader>ff",  "<cmd>Telescope git_files<cr>",       desc = "Find git files" },
+      { "<leader>fa",  "<cmd>Telescope find_files<cr>",      desc = "Find all files" },
       { "<leader>fr",  "<cmd>Telescope oldfiles<cr>",        desc = "Find in recent" },
       { "<leader>fgf", "<cmd>Telescope live_grep<cr>",       desc = "Git grep" },
       { "<leader>f:",  "<cmd>Telescope command_history<cr>", desc = "Find in command history" },
@@ -32,6 +26,34 @@ return {
         function()
           local word = vim.fn.expand("<cword>")
           require('telescope.builtin').grep_string({ search = word })
+        end,
+        desc = "Find current word"
+      },
+      {
+        "<leader>fgp",
+        function()
+          local word = vim.fn.expand("<cword>")
+          require('telescope.builtin').grep_string(
+            {
+              search = word,
+              file_ignore_patterns = {
+                ".*test.*",
+                ".*Test.*",
+                ".*TEST.*",
+                "test/.*",
+                "tests/.*",
+                "Test/.*",
+                "Tests/.*",
+                "TEST/.*",
+                "TESTS/.*",
+                "__tests__/.*",
+                "spec/.*",
+                "specs/.*",
+                "*.test.*",
+                "*.spec.*"
+              }
+            }
+          )
         end,
         desc = "Find current word"
       },
@@ -62,7 +84,31 @@ return {
         end,
         mode = "v",
         desc = "Grep visual selection",
-      }
+      },
+      {
+        "<leader>fp",
+        function()
+          require('telescope.builtin').git_files({
+            file_ignore_patterns = {
+              ".*test.*",
+              ".*Test.*",
+              ".*TEST.*",
+              "test/.*",
+              "tests/.*",
+              "Test/.*",
+              "Tests/.*",
+              "TEST/.*",
+              "TESTS/.*",
+              "__tests__/.*",
+              "spec/.*",
+              "specs/.*",
+              "*.test.*",
+              "*.spec.*"
+            }
+          })
+        end,
+        desc = "Find git project files (exclude tests)"
+      },
     }
   end,
 }
