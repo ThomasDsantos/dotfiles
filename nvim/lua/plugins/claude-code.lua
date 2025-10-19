@@ -5,8 +5,10 @@ return {
   },
   config = function()
     require("claude-code").setup({
-      -- Configuration options will be added here
-      -- Check :help claude-code for available options
+      window = {
+        position = "right",
+        width = 0.33, -- 1/3 of editor width
+      },
     })
   end,
   keys = {
