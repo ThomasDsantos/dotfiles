@@ -5,7 +5,7 @@ return {
   enable_tab_bar = false,
 
   font_size = 12.0,
-  font = wezterm.font_with_fallback {'JetBrains Mono', 'Fira Code'},
+  font = wezterm.font_with_fallback { 'JetBrains Mono', 'Fira Code' },
 
   window_background_opacity = 0.92,
   window_decorations = 'RESIZE',
@@ -19,8 +19,8 @@ return {
 
     { key = 'r', mods = 'CTRL|SHIFT', action = wezterm.action.ReloadConfiguration },
 
-    { key = '-', mods = 'CTRL', action = wezterm.action.DecreaseFontSize },
-    { key = '=', mods = 'CTRL', action = wezterm.action.IncreaseFontSize },
+    { key = '-', mods = 'CTRL',       action = wezterm.action.DecreaseFontSize },
+    { key = '=', mods = 'CTRL',       action = wezterm.action.IncreaseFontSize },
 
     { key = 'c', mods = 'CTRL|SHIFT', action = wezterm.action.CopyTo 'Clipboard' },
     { key = 'v', mods = 'CTRL|SHIFT', action = wezterm.action.PasteFrom 'Clipboard' },
@@ -69,6 +69,7 @@ return {
       mods = 'CTRL',
       action = wezterm.action.SendString "\x1b[57;5u"
     },
+    { key = "Enter", mods = "SHIFT", action = wezterm.action { SendString = "\x1b\r" } },
   },
   mouse_bindings = {
     -- Ctrl-click will open the link under the mouse cursor
@@ -79,4 +80,3 @@ return {
     },
   },
 }
-

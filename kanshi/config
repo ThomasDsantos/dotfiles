@@ -11,6 +11,7 @@ profile home {
   exec swaymsg workspace 8, move workspace to output '"Samsung Electric Company LC49G95T H4ZR701011"'
   exec swaymsg workspace 9, move workspace to output '"Samsung Electric Company LC49G95T H4ZR701011"'
   exec swaymsg workspace 10, move workspace to output '"Samsung Electric Company LC49G95T H4ZR701011"'
+  exec eww-setup
 }
 
 profile work {
@@ -26,6 +27,7 @@ profile work {
   exec swaymsg workspace 8, move workspace to output '"Dell Inc. DELL U2715H GH85D6820E6S"'
   exec swaymsg workspace 9, move workspace to output '"Dell Inc. DELL U2715H GH85D6820E6S"'
   exec swaymsg workspace 10, move workspace to output '"Dell Inc. DELL U2715H GH85D6820E6S"'
+  exec eww-setup
 }
 
 profile holidays {
@@ -45,5 +47,6 @@ profile holidays {
 
 profile {
   output "eDP-1" mode 1920x1200 position 0,0
+  exec eww-setup
 }
 

@@ -6,7 +6,9 @@
       "Bash(git add nvim/lua/plugins/nuxt.lua)",
       "Bash(git commit -m \"$(cat <<''EOF''\nfeat(nvim): add nuxt-goto plugin for Vue development\n\nAdd nuxt-goto.nvim plugin for enhanced navigation in Nuxt/Vue projects.\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>\nEOF\n)\")",
       "Bash(git add waybar/)",
-      "Bash(git commit -m \"$(cat <<''EOF''\nfeat(waybar): add waybar configuration\n\nAdd initial waybar configuration and styling for Wayland status bar.\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>\nEOF\n)\")"
+      "Bash(git commit -m \"$(cat <<''EOF''\nfeat(waybar): add waybar configuration\n\nAdd initial waybar configuration and styling for Wayland status bar.\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>\nEOF\n)\")",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:neovim.io)"
     ],
     "deny": [],
     "ask": []
