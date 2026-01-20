@@ -19,7 +19,7 @@ vim.keymap.set("v", "<leader>y", "\"+y")
 vim.keymap.set("n", "<leader>Y", "\"+Y")
 
 vim.keymap.set("n", "<leader>f", function()
-    vim.lsp.buf.format()
+    require("conform").format({ async = true, lsp_fallback = true })
 end)
 
 vim.keymap.set("n", "<leader>w", "<C-w>")

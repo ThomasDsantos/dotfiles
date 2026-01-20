@@ -84,7 +84,6 @@ return {
     { '<leader>gr', vim.lsp.buf.references },
     { '<leader>gh', vim.lsp.buf.signature_help },
     { '<F2>',       vim.lsp.buf.rename },
-    { '<F3>',       "<cmd>lua vim.lsp.buf.format({ async = true })<cr>" },
     { '<F4>',       vim.lsp.buf.code_action },
   },
   lazy = false,

@@ -17,6 +17,17 @@ return {
     return {
       { "<leader>ff",  "<cmd>Telescope git_files<cr>",       desc = "Find git files" },
       { "<leader>fa",  "<cmd>Telescope find_files<cr>",      desc = "Find all files" },
+      {
+        "<leader>fA",
+        function()
+          require('telescope.builtin').find_files({
+            hidden = true,
+            no_ignore = true,
+            file_ignore_patterns = { "^.git/" }
+          })
+        end,
+        desc = "Find all files (including gitignored)"
+      },
       { "<leader>fr",  "<cmd>Telescope oldfiles<cr>",        desc = "Find in recent" },
       { "<leader>fgf", "<cmd>Telescope live_grep<cr>",       desc = "Git grep" },
       { "<leader>f:",  "<cmd>Telescope command_history<cr>", desc = "Find in command history" },
