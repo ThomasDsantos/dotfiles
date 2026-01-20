@@ -5,6 +5,7 @@ mode "media" {
       Escape mode "default"
       p exec playerctl previous
       n exec playerctl next
+      space exec playerctl play-pause
     }
 }
 

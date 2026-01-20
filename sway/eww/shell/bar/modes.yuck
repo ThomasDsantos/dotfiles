@@ -25,7 +25,8 @@
 ],
 "media": [
   {"keys": "p", "action": "Previous"},
-  {"keys": "n", "action": "Next"}
+  {"keys": "n", "action": "Next"},
+  {"keys": "Space", "action": "Play/Pause"}
 ]
 }')
 
