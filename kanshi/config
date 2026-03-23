@@ -29,8 +29,8 @@ profile work {
 }
 
 profile holidays {
-  output "eDP-1" mode 1920x1200 position 0,1200
-  output "Philips Consumer Electronics Company Philips 236V4 UHB1242014733" mode 1920x1080 position 0,0 scale 0.9
+  output "eDP-1" mode 1920x1200 position 0,0
+  output "Philips Consumer Electronics Company Philips 236V4 UHB1242014733" mode 1920x1080 position 1920,0 scale 0.9
   exec swaymsg workspace 1, move workspace to eDP-1
   exec swaymsg workspace 2, move workspace to output '"Philips Consumer Electronics Company Philips 236V4 UHB1242014733"'
   exec swaymsg workspace 3, move workspace to output '"Philips Consumer Electronics Company Philips 236V4 UHB1242014733"'

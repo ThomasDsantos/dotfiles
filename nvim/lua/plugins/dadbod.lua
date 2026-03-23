@@ -18,6 +18,11 @@ return {
 
       -- just close the tab, but context related of the keybinding
       vim.keymap.set('n', '<leader>dq', ':tabclose<cr>')
+
+			local ok, dbs = pcall(dofile, vim.fn.getcwd() .. "/.nvim-dbs.lua")
+			if ok then
+				vim.g.dbs = dbs
+			end
     end,
   },
 }
