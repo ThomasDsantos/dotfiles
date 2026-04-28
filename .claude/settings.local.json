@@ -12,7 +12,13 @@
       "Bash(mkdir:*)",
       "Bash(chmod:*)",
       "Bash(cat:*)",
-      "Bash(pkill:*)"
+      "Bash(pkill:*)",
+      "Bash(nvim --version)",
+      "WebSearch",
+      "Bash(git add *)",
+      "Bash(git commit -m ' *)",
+      "Bash(git rm *)",
+      "Bash(git commit *)"
     ],
     "deny": [],
     "ask": []

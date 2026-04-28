@@ -1,9 +1,11 @@
 return {
   'saghen/blink.cmp',
+  version = '2.*',
   dependencies = {
+    'saghen/blink.lib',
     'Kaiser-Yang/blink-cmp-avante',
   },
-  build = 'cargo build --release',
+  build = function() require('blink.cmp').build():wait(60000) end,
   opts = {
     completion = {
       documentation = {

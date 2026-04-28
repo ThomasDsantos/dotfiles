@@ -1,4 +1,4 @@
-vim.lsp.config('ts_ls', {
+return {
   init_options = {
     plugins = {
       {
@@ -13,6 +13,4 @@ vim.lsp.config('ts_ls', {
     "typescript",
     "vue",
   },
-})
-
-return {}
+}
