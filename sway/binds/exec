@@ -7,5 +7,7 @@ bindsym {
   $mod+d            exec killall wofi || wofi --show run
   $mod+Shift+d      exec killall wofi || wofi --show drun
   $mod+Shift+e      exec killall wofi || wofi-emoji
+
+  $mod+Shift+b      exec waybar-toggle
 }
 

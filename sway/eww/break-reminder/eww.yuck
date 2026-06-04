@@ -1,0 +1,35 @@
+(defvar bg-0 "")
+(defvar bg-1 "")
+(defvar bg-2 "")
+
+(defwidget break-card []
+  (box :class "break-card" :orientation "v" :space-evenly false :valign "center" :halign "center"
+    (label :class "break-title" :text "Pause !")
+    (label :class "break-subtitle"
+      :text "Lève-toi et regarde ailleurs pendant 1 minute"
+      :wrap true
+      :limit-width 40)
+    (box :class "break-actions" :space-evenly false :halign "center"
+      (button :class "break-btn snooze" :onclick "break-reminder snooze" "Snooze 5 min")
+      (button :class "break-btn done" :onclick "break-reminder done" "C'est bon !"))))
+
+(defwindow break-reminder-0
+  :geometry (geometry :x "0px" :y "0px" :width "100%" :height "100%")
+  :stacking "overlay" :focusable true :exclusive false :namespace "break-reminder"
+  (box :class "break-overlay" :hexpand true :vexpand true :valign "fill" :halign "fill"
+       :style "background-image: url('${bg-0}'); background-size: cover; background-repeat: no-repeat;"
+    (break-card)))
+
+(defwindow break-reminder-1
+  :geometry (geometry :x "0px" :y "0px" :width "100%" :height "100%")
+  :stacking "overlay" :focusable true :exclusive false :namespace "break-reminder"
+  (box :class "break-overlay" :hexpand true :vexpand true :valign "fill" :halign "fill"
+       :style "background-image: url('${bg-1}'); background-size: cover; background-repeat: no-repeat;"
+    (break-card)))
+
+(defwindow break-reminder-2
+  :geometry (geometry :x "0px" :y "0px" :width "100%" :height "100%")
+  :stacking "overlay" :focusable true :exclusive false :namespace "break-reminder"
+  (box :class "break-overlay" :hexpand true :vexpand true :valign "fill" :halign "fill"
+       :style "background-image: url('${bg-2}'); background-size: cover; background-repeat: no-repeat;"
+    (break-card)))

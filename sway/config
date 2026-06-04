@@ -51,7 +51,6 @@ exec {
 
 exec_always {
   pkill kanshi; exec kanshi
-  pkill waybar; exec waybar
 }
 
 input type:keyboard {

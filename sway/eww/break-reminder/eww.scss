@@ -1,0 +1,69 @@
+* {
+    all: unset;
+    font-family: "Torus Pro", "Torus", "Cantarell";
+    font-weight: 600;
+    font-size: 16px;
+}
+
+@keyframes break-fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+window {
+    background-color: transparent;
+    animation: break-fadein 0.6s ease-in-out;
+}
+
+.break-overlay {
+    background-color: black;
+}
+
+.break-card {
+    background-color: rgba(46, 52, 64, 0.88);
+    border-radius: 20px;
+    padding: 3rem 4rem;
+    border: 2px solid rgba(143, 188, 187, 0.4);
+}
+
+.break-title {
+    font-size: 3rem;
+    font-weight: 800;
+    color: #eceff4;
+    margin-bottom: 1rem;
+}
+
+.break-subtitle {
+    font-size: 1.1rem;
+    color: #d8dee9;
+    margin-bottom: 2.5rem;
+}
+
+.break-actions {
+    margin-top: 0.5rem;
+}
+
+.break-btn {
+    border-radius: 12px;
+    padding: 0.7rem 1.8rem;
+    margin: 0 0.5rem;
+    font-size: 1rem;
+    font-weight: 700;
+    transition: background-color 0.2s ease;
+
+    &.snooze {
+        background-color: #81A1C1;
+        color: #2E3440;
+        &:hover {
+            background-color: #88C0D0;
+        }
+    }
+
+    &.done {
+        background-color: #A3BE8C;
+        color: #2E3440;
+        &:hover {
+            background-color: #b5cc9e;
+        }
+    }
+}
