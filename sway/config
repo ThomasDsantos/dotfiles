@@ -37,7 +37,7 @@ include ./binds/*
 xwayland enable
 
 exec {
-  swaync
+  systemctl --user import-environment WAYLAND_DISPLAY SWAYSOCK && systemctl --user start swaync
 
   nm-applet
   blueman-applet
